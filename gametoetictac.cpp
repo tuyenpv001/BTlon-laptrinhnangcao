@@ -6,44 +6,34 @@
 
 char background [10]= {'o','1','2','3','4','5','6','7','8','9'};
 
-// Khai bao nguyen mau ham
-void ban_co();
-void chay_game();
-int xet_win();
+void giaoDien();
+void playGame();
+int xetDieuKienThangThua();
 
 int main(){
 	int lua_chon;
 	system("color 4E");
-	do {
+
 		system("cls");
 		printf("\n\n\n\t\t\t\t\t\tGAME TIC TAC TOE\n\n\t\t\t\t\t\t1.BAT DAU\n\t\t\t\t\t\t2.THOAT\n\n");
 		printf("\t\t\t\t\t\tNhap lua chon:  ");
 		scanf("%d",&lua_chon);
-		//do{
+		
 			switch (lua_chon){
 				case 1:
 					system("cls");
-				
-					for(int i=3; i>=1;i--){
-						system("cls");
-						printf("\n\n\n\n\n\n\n\t\t\t\t\tGAME SE BAT DAU SAU: %d\n\t\t\t\t\t\t",i);
-						Sleep(1000);
-					}
-					system("cls");
-					printf("\n\n\n\n\n\n\t\t\t\t\t\tBAT DAU");
-					Sleep(700);
-					chay_game();
+					playGame();
 					break;
 				case 2:
 					exit(0);	
 			}
-	}while(1);
+
 		
 	return 0;
 }
 
 // Ham giao dien game
-void ban_co(){
+void giaoDien(){
 	system("cls");
 	system("color 4E");
 	printf("\n\n\n\n\n\t\t\t\t\t\t   TIC TAC TOE\n\n");
@@ -60,18 +50,18 @@ void ban_co(){
 }
 
 
-void chay_game(){
-	int play=1,i,o_chon;
+void playGame(){
+	int Play=1,i,o_chon;
 	char X_O;
-	
+
 	do{
-		ban_co ();
+		giaoDien ();
 		
-		play=(play % 2) ? 1 : 2; 
-		printf("\n\t\t\t\t\t\t  Nguoi choi %d: ",play);
+		Play=(Play % 2) ? 1 : 2; 
+		printf("\n\t\t\t\t\t\t  Nguoi choi %d: ",Play);
 		scanf("%d",&o_chon);
 		
-		X_O=(play==1) ? 'X':'O';
+		X_O=(Play==1) ? 'X':'O';
 		
 		if(o_chon == 1 && background[1] =='1')
 		background[1] = X_O;
@@ -102,15 +92,15 @@ void chay_game(){
 		
 		else {
 			printf("\n\t\t\t\t\t  O nay da duoc nhap hoac khong co\n");
-			play--;
+			Play--;
 			getch();
 		}
-		i=xet_win();
-		play++;
+		i=xetDieuKienThangThua();
+		Play++;
 	}while(i == (-1));
-		ban_co();
+		giaoDien();
 		if(i==1){
-			printf("\n\t\t\t\t\t\t  Play %d win!!!",--play);
+			printf("\n\t\t\t\t\t\t  Play %d win!!!",--Play);
 		}
 		else{
 			printf("\n\t\t\t\t\t\t  Game hoa!!!");
@@ -119,7 +109,7 @@ void chay_game(){
 }
 
  // Ham xet dieu kien de thang 
-int xet_win(){
+int xetDieuKienThangThua(){
 	if (background[1]== background [2] && background [2]==background[3])
 		return 1;
 	
@@ -152,4 +142,3 @@ int xet_win(){
 		return -1;
 	}
 }
-
